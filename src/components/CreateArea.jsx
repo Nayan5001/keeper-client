@@ -87,6 +87,7 @@ function CreateArea(props) {
             value={note.title}
             placeholder="Title"
             required
+            className="inputb"
           />
         ) : (
           ""

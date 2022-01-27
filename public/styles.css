@@ -81,7 +81,16 @@ form.create-note {
   border-radius: 7px;
   box-shadow: 0 1px 5px rgb(138, 137, 137);
 }
-form.create-note input,
+.inputb{
+  width: 100%;
+  border: none;
+  border-bottom: 2px dotted black;
+  padding: 4px;
+  outline: none;
+  font-size: 1.2em;
+  font-family: inherit;
+  resize: none;
+}
 form.create-note textarea {
   width: 100%;
   border: none;
