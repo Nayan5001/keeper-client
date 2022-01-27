@@ -11,18 +11,20 @@ function App() {
     // mongoose.connect("mongodb://localhost:27017/keeperdb",{useNewUrlParser:true,useUnifiedTopology:true});
     const [notes, setNotes] = useState([]);
     // const [idd,setid]=useState();
-    
+    const [ spinner, setSpinner ] = useState(true);
+
     useEffect(()=>{
-      axios.get('http://localhost:3000/api').then((response)=>{
+      axios.get('/api').then((response)=>{
         console.log(response.data);
         setNotes(response.data);
       });
+      setSpinner(false);
     },[]);
   
     // var bodyFormData = new FormData();
   function addNote(newNote) {
     console.log(newNote);
-    axios.post('http://localhost:3000/apiadd',{newNote})
+    axios.post('/apiadd',{newNote})
     .then(function (response) {
       //handle success
       console.log(response);
@@ -50,7 +52,7 @@ function App() {
     //   console.log(response.data);
     //   setid(response.data);
     // });
-    axios.post('http://localhost:3000/apidel',{id})
+    axios.post('/apidel',{id})
       .then(function (response) {
         //handle success
         console.log(response);
@@ -79,7 +81,7 @@ function App() {
       });
       console.log(id);
     }
-  return (
+  return (!spinner &&
     <div>
       <Header />
       <CreateArea onAdd={addNote} />

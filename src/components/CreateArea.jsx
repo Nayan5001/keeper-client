@@ -6,14 +6,16 @@ import axios from "axios";
 function CreateArea(props) {
   const [isExpanded, setExpanded] = React.useState(false);
   const[idd,setid]=useState(0);
+  const [ spinner, setSpinner ] = useState(true);
   useEffect(()=>{
-    axios.get('http://localhost:3000/getid').then((response)=>{
+    axios.get('/getid').then((response)=>{
       console.log(response.data.idd);
       // let num=(response.data);
       setid(response.data.idd);
       // console.log(idd);
     });
-  },[idd]);
+    setSpinner(false);
+  },[]);
   const [note, setNote] = useState({
     title: "",
     content: "",
@@ -21,6 +23,20 @@ function CreateArea(props) {
   });
   // console.log("note_id");
   // console.log(note.id);
+  // window.addEventListener('keydown', function(event) {
+  //   //set default value for variable that will hold the status of keypress
+  //   let pressedEnter = false;
+
+  //   //if user pressed enter, set the variable to true
+  //   if (event.keyCode == 13)
+  //     pressedEnter = true;
+
+  //   //we want forms to disable submit for a tenth of a second only
+  //   setTimeout(function() {
+  //     pressedEnter = false;
+  //   }, 100)
+
+  // })
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -44,7 +60,7 @@ function CreateArea(props) {
       id:''
     });
     setid(idd+1);
-    axios.post('http://localhost:3000/savenextid',{idd})
+    axios.post('/savenextid',{idd})
     .then(function (response) {
       //handle success
       console.log(response);
@@ -61,9 +77,9 @@ function CreateArea(props) {
   }
   const enabled =
   note.title.length > 0;
-  return (
+  return (!spinner && 
     <div>
-      <form className="create-note">
+      <form className="create-note" onSubmit={submitNote}>
         {isExpanded ? (
           <input
             name="title"
