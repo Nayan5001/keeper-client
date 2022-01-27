@@ -14,7 +14,7 @@ function App() {
     const [ spinner, setSpinner ] = useState(true);
 
     useEffect(()=>{
-      axios.get('/api').then((response)=>{
+      axios.get('https://keeper999.herokuapp.com/api').then((response)=>{
         console.log(response.data);
         setNotes(response.data);
       });
@@ -24,7 +24,7 @@ function App() {
     // var bodyFormData = new FormData();
   function addNote(newNote) {
     console.log(newNote);
-    axios.post('/apiadd',{newNote})
+    axios.post('https://keeper999.herokuapp.com/apiadd',{newNote})
     .then(function (response) {
       //handle success
       console.log(response);
@@ -52,7 +52,7 @@ function App() {
     //   console.log(response.data);
     //   setid(response.data);
     // });
-    axios.post('/apidel',{id})
+    axios.post('https://keeper999.herokuapp.com/apidel',{id})
       .then(function (response) {
         //handle success
         console.log(response);

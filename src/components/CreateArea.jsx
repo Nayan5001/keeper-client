@@ -8,7 +8,7 @@ function CreateArea(props) {
   const[idd,setid]=useState(0);
   const [ spinner, setSpinner ] = useState(true);
   useEffect(()=>{
-    axios.get('/getid').then((response)=>{
+    axios.get('https://keeper999.herokuapp.com/getid').then((response)=>{
       console.log(response.data.idd);
       // let num=(response.data);
       setid(response.data.idd);
@@ -60,7 +60,7 @@ function CreateArea(props) {
       id:''
     });
     setid(idd+1);
-    axios.post('/savenextid',{idd})
+    axios.post('https://keeper999.herokuapp.com/savenextid',{idd})
     .then(function (response) {
       //handle success
       console.log(response);
