@@ -12,6 +12,7 @@ body {
   background: #eee;
   background-image: url("https://cdn.pixabay.com/photo/2016/03/27/23/11/post-it-notes-1284667_960_720.jpg");
   padding: 0 16px;
+  background-repeat: no-repeat;
 }
 
 header {
